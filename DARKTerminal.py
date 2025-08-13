@@ -1,7 +1,7 @@
 import os, psutil, numpy, getpass, platform
 
 # color set
-if os.name = "nt":
+if os.name == "nt":
    n = ""
    r = ""
    g = ""
@@ -48,13 +48,46 @@ def Adminstor(args):
       else: print(f"{r}Your are not Adminstor {n}")
 
 
+def runscript(filepath):
+
+   doctype = "<DARK script>"
+   start_script_line = None
+   filepath_array = filepath.split(".")
+
+   def readerscript(filepath):
+      if filepath_array[len(filepath_array)-1:] != ["dtx"]: return None
+      try:
+         with open(filepath, 'r', encoding='utf-8') as file:
+            start_script_line = None
+            for line_number, line in enumerate(file, start=1):
+               if doctype in line: 
+                  start_script_line = line_number+1
+            return start_script_line
+      except FileNotFoundError: print(f"Error: file '{filepath}' not found"); return None
+
+   def runner(filepath, start_line):
+      with open(filepath, 'r', encoding='utf-8') as file: lines = file.readlines()
+      if start_line < 1: start_line = 1
+      elif start_line > len(lines): start_line = "MAX"
+      scriptcommands = ''.join(lines[start_line-1:]).replace("\n",'').split(";")
+      for scmd in scriptcommands:
+         scmdo = scmd.split(" ")
+         if scmdo[0] != "//" and scmdo[0] != "":
+            run_command_line(scmd, scmd.split(" "))
+
+   start_script_line = readerscript(filepath)
+   if start_script_line != None: runner(filepath, start_script_line)
+   else: print("Error: script file don't started any dark script")
+
+
 # main method
 def run_command_line(cmd, cmdo):
    match cmdo[0]:
 
       case "help":
          printhelp = ""
-            for c,d in commandlists: printhelp += f"{p} {c}: {d}{b}\n"
+         for c,d in commandlists: 
+            printhelp += f"{p} {c}: {d}{b}\n"
             print("\n"+printhelp)
 
       case "system": print(systeminfo) 
@@ -67,7 +100,9 @@ def run_command_line(cmd, cmdo):
          battery_percent = battery.percent
          print(f"{p}Current battery percentage: {numpy.round(battery_percent, decimals=1)}%{n}")
 
-      case "clear": os.system("clear")
+      case "clear": 
+         clearcmd = "cls" if os.name=="nt" else "clear"
+         os.system(clearcmd)
 
       case "cd":
          try: os.chdir(cmdo[1]); print(b, os.getcwd(), n)
