@@ -14,11 +14,11 @@ with enter `!$` or `!` you can exit from Adminstor
 
 ## run scripts
 with command `runscript` you can run a script file but must to save you file as `*.dtx` (dtx: it's meaning Dark Terminal XScript) and must you write in first line `<DARK script>;`
-it's DOCTYPE if you do'nt write it your script dosen't run any commands
+it's DOCTYPE if you don't write it your script dosen't run any commands
 
 ## 📥 installtion  
 ```bash
-git clone https://github.com/username/DARKTerminal.git
+git clone https://github.com/AmirAliV88/DARKTerminal.git
 cd DARKTerminal
 pip install psutil, numpy, getpass, platform
 ```
