@@ -18,7 +18,7 @@ it's DOCTYPE if you don't write it your script dosen't run any commands
 
 ## 📥 installtion  
 ```bash
-git clone https://github.com/AmirAliV88/DARKTerminal.git
+git clone git@github.com:AmirAliV88/My-DARKTerminal.git
 cd DARKTerminal
 pip install psutil, numpy, getpass, platform
 ```
