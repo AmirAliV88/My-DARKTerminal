@@ -14,7 +14,7 @@ else:
    g = "\033[32m"
    p = "\033[35m"
    b = "\033[36m"   
-   # font colors on Linux and AppleMAc
+   # font colors on Linux and AppleMac
 
 print(f"{n}Terminal Shell: {n}")
 
@@ -41,10 +41,14 @@ commandlists = [
 
 def Adminstor(args):
    global backinput, Adminstor_action
-   if Adminstor_action: backinput = f"{g}>__/: {n}"; Adminstor_action = False
+   if Adminstor_action: 
+	   backinput = f"{g}>__/: {n}"
+	   Adminstor_action = False
    else:
       enterpass = getpass.getpass("Enter Adminstor password: ")
-      if enterpass == "$.password": backinput = f"{r}>__/$: {n}"; Adminstor_action = True
+      if enterpass == "$.password": 
+		  backinput = f"{r}>__/$: {n}"
+		  Adminstor_action = True
       else: print(f"{r}Your are not Adminstor {n}")
 
 
